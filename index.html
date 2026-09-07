@@ -144,6 +144,16 @@
   .evtable td.t{font-variant-numeric:tabular-nums}
   .ev-tag{margin-top:.7rem;font:400 11px var(--font-mono);letter-spacing:.12em;
        text-transform:uppercase;color:var(--trgr-body)}
+  .tier{display:flex;flex-direction:column}
+  .tier .price{font:500 12px var(--font-mono);letter-spacing:.08em;
+       text-transform:uppercase;color:var(--trgr-purple);margin-bottom:.4rem}
+  .tier ul{margin:.8rem 0 0;padding:0;list-style:none}
+  .tier li{padding:.28rem 0 .28rem 1.3rem;position:relative;font-size:14px;color:var(--trgr-body)}
+  .tier li::before{content:"✓";position:absolute;left:0;color:var(--trgr-success);font-weight:600}
+  .tier .cta{margin-top:1.4rem;align-self:flex-start;font-size:14px;padding:.7rem 1.1rem}
+  .tier .cta.ghost{background:var(--trgr-white);color:var(--trgr-purple);
+       border:1px solid var(--trgr-purple)}
+  .tier .cta.ghost:hover{background:rgba(83,58,253,.06)}
   /* Pipeline figure — adapted from the design project's P4 artboard */
   .pipe{display:flex;align-items:stretch;gap:.9rem;margin-top:2.25rem;flex-wrap:wrap}
   .pipe .inside{display:flex;gap:.9rem;flex:1 1 34rem;flex-wrap:wrap;
@@ -182,7 +192,7 @@
     can read them, and the machine-readable certification package produced from
     your running system. Built for startups that want their first federal
     contract without hiring a compliance department.</p>
-    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
+    <a class="cta" href="mailto:hello@trgr.com?subject=Free%20readiness%20assessment">Book a free readiness assessment</a>
     <p class="disarm">You talk directly with the engineer who does the work. No salespeople.</p>
 
     <figure class="split" aria-label="The same certification data shown as machine-readable JSON and as human-readable prose">
@@ -327,6 +337,55 @@
   </section>
 
   <section>
+    <h2>How can we help?</h2>
+    <p class="lede">Compliance engineers, not a SaaS tool and not an audit
+    firm. We build; your assessor assesses.</p>
+    <div class="cards">
+      <div class="card tier">
+        <p class="price">Free</p>
+        <h3>Readiness assessment</h3>
+        <p>Know exactly where you stand. We review your system and hand you
+        the map: certification class, track, and the gaps between your
+        architecture and the boundary it needs.</p>
+        <ul>
+          <li>Certification class and track</li>
+          <li>Boundary and control gaps</li>
+          <li>You keep the map</li>
+          <li>No commitment</li>
+        </ul>
+        <a class="cta" href="mailto:hello@trgr.com?subject=Free%20readiness%20assessment">Book the assessment</a>
+      </div>
+      <div class="card tier">
+        <p class="price">Fixed-scope phases</p>
+        <h3>ATO engagement</h3>
+        <p>The build. GovCloud as code, the controls implemented, the package
+        generated and submitted. Scope and price are fixed per phase, and a
+        single phase is a fine place to start.</p>
+        <ul>
+          <li>Deliverables defined before work begins</li>
+          <li>A shared channel with the engineer</li>
+          <li>Weekly cadence, full transparency</li>
+          <li>Everything lands in your accounts</li>
+        </ul>
+        <a class="cta ghost" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Scope an engagement</a>
+      </div>
+      <div class="card tier">
+        <p class="price">After certification</p>
+        <h3>Ongoing compliance</h3>
+        <p>Certification is a state, not an event. We keep the evidence
+        pipelines current, watch drift against the boundary, and maintain the
+        package as your system changes.</p>
+        <ul>
+          <li>Evidence stays regenerating</li>
+          <li>Drift watched against the baseline</li>
+          <li>Package maintained through change</li>
+        </ul>
+        <a class="cta ghost" href="mailto:hello@trgr.com?subject=Ongoing%20compliance">Ask about ongoing</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Start from a scoped path. Certify from a running system.</h2>
     <ol class="how">
       <li><div><strong>We scope the path</strong>
@@ -413,6 +472,18 @@
       accepting Rev5 applications on June 11, 2027.</p>
     </details>
     <details>
+      <summary>Do you work with our existing team?</summary>
+      <p>Yes, and it works best that way. Your engineers keep operating the
+      system; we build alongside them in a shared channel. Everything we
+      produce is code they can read, run, and change after we leave.</p>
+    </details>
+    <details>
+      <summary>Can we start small?</summary>
+      <p>The readiness assessment is free and stands on its own. After it, a
+      single fixed-scope phase is a normal way to begin. Nothing obligates
+      the next phase.</p>
+    </details>
+    <details>
       <summary>What does it cost?</summary>
       <p>Price is scoped on the consultation, by system and by certification
       class. There is no platform subscription. You pay for the engagement and
@@ -424,10 +495,10 @@
 <div class="closing">
   <div class="inner">
     <h2>See your path before you commit.</h2>
-    <p>The consultation maps your system to a certification class and a track,
-    and you keep the map. Write to
+    <p>The assessment is free, it maps your system to a certification class
+    and a track, and you keep the map either way. Write to
     <a class="mail" href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
-    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
+    <a class="cta" href="mailto:hello@trgr.com?subject=Free%20readiness%20assessment">Book a free readiness assessment</a>
     <p class="disarm">No pressure and no sales deck. One engineer, your
     architecture, an hour.</p>
   </div>
