@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TRGR — FedRAMP certification packages and the CR26 trust center</title>
+<meta name="description" content="TRGR generates the CR26 certification package from your running system and ships the trust center that serves it, in your account, under your control.">
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#11151f; --text:#e6e9ef; --muted:#9aa3b2;
+    --accent:#5eead4; --rule:#1e2431; --max:68rem;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#fbfbfa; --panel:#f1f2f0; --text:#171a20; --muted:#555d69;
+           --accent:#0d7a6a; --rule:#e3e5e2; }
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--text);
+       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  main{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+  header.site{max-width:var(--max);margin:0 auto;padding:1.5rem;
+       display:flex;justify-content:space-between;align-items:baseline}
+  .brand{font-weight:700;letter-spacing:.06em}
+  .brand span{color:var(--accent)}
+  header.site a{color:var(--muted);text-decoration:none;font-size:.95rem}
+  header.site a:hover{color:var(--text)}
+  .hero{padding:4.5rem 0 3.5rem;border-bottom:1px solid var(--rule)}
+  .eyebrow{color:var(--muted);font-size:.85rem;letter-spacing:.08em;
+       text-transform:uppercase;margin-bottom:1.1rem}
+  h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.15;font-weight:750;
+       letter-spacing:-.015em;max-width:46rem}
+  h1 em{color:var(--accent);font-style:normal}
+  .sub{color:var(--muted);max-width:44rem;margin-top:1.25rem;font-size:1.06rem}
+  .underline-claim{margin-top:1.5rem;font-size:.95rem;color:var(--text);
+       border-left:3px solid var(--accent);padding-left:.9rem;max-width:40rem}
+  .cta{display:inline-block;margin-top:2rem;background:var(--accent);
+       color:var(--bg);font-weight:650;padding:.7rem 1.3rem;border-radius:.4rem;
+       text-decoration:none}
+  .cta:hover{filter:brightness(1.08)}
+  section{padding:3rem 0;border-bottom:1px solid var(--rule)}
+  h2{font-size:1.35rem;font-weight:700;margin-bottom:.6rem;letter-spacing:-.01em}
+  .lede{color:var(--muted);max-width:44rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+       gap:1rem;margin-top:1.75rem}
+  .card{background:var(--panel);border:1px solid var(--rule);border-radius:.6rem;
+       padding:1.25rem 1.35rem}
+  .card h3{font-size:1.02rem;font-weight:650;margin-bottom:.45rem}
+  .card p{color:var(--muted);font-size:.95rem}
+  .contact p{max-width:44rem;color:var(--muted)}
+  .contact a{color:var(--accent)}
+  footer{max-width:var(--max);margin:0 auto;padding:2rem 1.5rem 3rem;
+       color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="brand">TR<span>GR</span></div>
+  <a href="mailto:hello@trgr.com">Contact</a>
+</header>
+<main>
+  <div class="hero">
+    <p class="eyebrow">CR26 · required under the 2026 Consolidated Rules</p>
+    <h1>Serve your FedRAMP certification data from <em>your own boundary</em>.</h1>
+    <p class="sub">We generate the CR26 package from your running system and ship
+    the trust center that serves it, in your account, under your control.
+    Agencies mint their own credential with their federal identity and verify
+    every file against the published key.</p>
+    <p class="underline-claim">An approval queue or an email-for-access form does
+    not meet the rule. Conformance is the difference.</p>
+    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20briefing">Request a briefing</a>
+  </div>
+
+  <section>
+    <h2>Where the agents run and where your data stays</h2>
+    <p class="lede">The agents run against your own cloud, not a copy of it. You
+    keep control of the boundary, and the compliance evidence never leaves it.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>A scoped, read-only role</h3>
+        <p>You run a template that creates a read-only role in your account.
+        Only the runner in your own account can assume it. TRGR itself has no
+        access path into your account.</p>
+      </div>
+      <div class="card">
+        <h3>Your data stays in your boundary</h3>
+        <p>The data stays inside your environment. The agents read your Config,
+        Security Hub, and live system state, generate the OSCAL package, and
+        flag drift. You receive the artifacts. Your ISSO signs off before
+        anything is reported.</p>
+      </div>
+      <div class="card">
+        <h3>Deterministic verdicts</h3>
+        <p>Every pass or fail comes from a deterministic engine evaluating your
+        collected configuration against the published FedRAMP rules. AI drafts
+        the narrative. Your ISSO reviews and signs before an agency can pull
+        anything.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Talk to us</h2>
+    <p>Engagements start with a scoping conversation: your system, your
+    boundary, your timeline. Write to
+    <a href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
+  </section>
+</main>
+<footer>© TRGR. FedRAMP is a program of the U.S. General Services Administration; TRGR is not affiliated with or endorsed by GSA.</footer>
+</body>
+</html>
