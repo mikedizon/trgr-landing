@@ -93,19 +93,57 @@
   .closing .cta{background:var(--trgr-white);color:var(--trgr-navy);margin-top:1.75rem}
   .closing .cta:hover{background:#eef0ff}
   .closing .disarm{color:rgba(255,255,255,0.55)}
-  /* Terminal figure — adapted from the design project's P3 artboard */
-  .term{margin:3.5rem auto 0;max-width:52rem;border-radius:10px;background:#0a1f33;
-       border:1px solid var(--trgr-border);overflow:hidden;box-shadow:var(--shadow-ambient-1)}
-  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 18px;
-       border-bottom:1px solid rgba(255,255,255,.09)}
-  .term-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22)}
-  .term-bar span{margin-left:10px;font:400 11px var(--font-mono);letter-spacing:.1em;
-       text-transform:uppercase;color:rgba(255,255,255,.45)}
-  .term-body{padding:1.4rem 1.5rem;font:400 13px/1.75 var(--font-mono);
-       color:rgba(255,255,255,.9);overflow-x:auto}
-  .term-body .p{color:#7d8cff}
-  .term-body .c{color:rgba(255,255,255,.4)}
-  .term-body .o{color:rgba(255,255,255,.6)}
+  /* Split panel — adapted from the design project's P2 artboard */
+  .split{display:flex;gap:0;margin-top:3.5rem;align-items:stretch;flex-wrap:wrap}
+  .split .pane{flex:1 1 20rem;border:1px solid var(--trgr-border);border-radius:8px;
+       display:flex;flex-direction:column;overflow:hidden;min-width:0}
+  .split .pane.dark{background:#0d253d}
+  .split .pane.light{background:var(--trgr-white)}
+  .pane-bar{display:flex;align-items:center;gap:10px;padding:11px 16px;
+       font:400 11px var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+  .pane.dark .pane-bar{color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.1)}
+  .pane.light .pane-bar{color:var(--trgr-body);border-bottom:1px solid var(--trgr-border)}
+  .pane-bar em{margin-left:auto;font-style:normal;letter-spacing:.04em;text-transform:none}
+  .pane.dark .pane-bar em{color:rgba(255,255,255,.4)}
+  .pane.light .pane-bar em{color:var(--trgr-body)}
+  .pane pre{margin:0;padding:1.2rem 1.3rem;font:400 12px/1.7 var(--font-mono);
+       color:rgba(255,255,255,.82);overflow-x:auto;flex:1}
+  .pane pre .k{color:#a9b6ff}
+  .pane pre .v{color:rgba(255,255,255,.7)}
+  .pane pre .dim{color:rgba(255,255,255,.4)}
+  .pane pre .hash{color:#8f7bff;background:rgba(83,58,253,.22);padding:1px 6px;border-radius:4px}
+  .pane-prose{padding:1.4rem 1.5rem;display:flex;flex-direction:column;flex:1}
+  .pane-prose .ctl{font:400 12px var(--font-mono);letter-spacing:.06em;color:var(--trgr-body)}
+  .pane-prose .stmt{margin-top:.8rem;font-size:17px;font-weight:300;line-height:1.5;color:var(--trgr-navy)}
+  .pane-meta{margin-top:auto;border-top:1px solid var(--trgr-border);padding-top:1rem;
+       display:flex;flex-direction:column;gap:.5rem;font-size:13px;color:var(--trgr-body)}
+  .pane-meta .digest{font:400 13px var(--font-mono);color:var(--trgr-purple);
+       background:rgba(83,58,253,.08);padding:2px 8px;border-radius:4px;width:fit-content}
+  .split .join{flex:0 0 100%;display:flex;align-items:center;justify-content:center;
+       padding:.6rem 0;font:400 11px var(--font-mono);letter-spacing:.1em;
+       text-transform:uppercase;color:var(--trgr-body);gap:.6rem}
+  @media (min-width:56rem){
+    .split{flex-wrap:nowrap}
+    .split .join{flex:0 0 auto;width:6.5rem;flex-direction:column;padding:0}
+  }
+  .join .badge{width:44px;height:44px;border-radius:50%;background:var(--trgr-white);
+       border:1.5px solid var(--trgr-purple);display:flex;align-items:center;justify-content:center}
+  .split-note{margin-top:.9rem;font:400 12px var(--font-mono);letter-spacing:.04em;color:var(--trgr-body)}
+  /* Evidence table — adapted from the design project's P1 artboard */
+  .evtable{margin-top:2.25rem;border:1px solid var(--trgr-border);border-radius:8px;
+       background:var(--trgr-white);overflow-x:auto}
+  .evtable table{width:100%;border-collapse:collapse;min-width:34rem}
+  .evtable th{font:400 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;
+       color:var(--trgr-body);background:var(--trgr-surface-subtle);text-align:left;
+       padding:.75rem 1.2rem;border-bottom:1px solid var(--trgr-border)}
+  .evtable td{padding:.9rem 1.2rem;border-bottom:1px solid var(--trgr-border);
+       font-size:15px;color:var(--trgr-body)}
+  .evtable tr:last-child td{border-bottom:none}
+  .evtable td.ctl{font-family:var(--font-mono);font-size:14px;color:var(--trgr-navy)}
+  .evtable td.st{color:var(--trgr-navy)}
+  .evtable td.t{font-variant-numeric:tabular-nums}
+  .ev-tag{margin-top:.7rem;font:400 11px var(--font-mono);letter-spacing:.12em;
+       text-transform:uppercase;color:var(--trgr-body)}
   /* Pipeline figure — adapted from the design project's P4 artboard */
   .pipe{display:flex;align-items:stretch;gap:.9rem;margin-top:2.25rem;flex-wrap:wrap}
   .pipe .inside{display:flex;gap:.9rem;flex:1 1 34rem;flex-wrap:wrap;
@@ -147,16 +185,41 @@
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
     <p class="disarm">You talk directly with the engineer who does the work. No salespeople.</p>
 
-    <figure class="term" aria-label="Illustrative terminal: the boundary applies as code and the package validates as data">
-      <div class="term-bar"><i></i><i></i><i></i><span>boundary · package · illustrative</span></div>
-      <div class="term-body">
-        <div><span class="p">$</span> terraform apply -target=module.boundary</div>
-        <div class="o">Apply complete. <span class="c"># the boundary is code in your accounts</span></div>
-        <div>&nbsp;</div>
-        <div><span class="p">$</span> oscal-cli validate ssp.json</div>
-        <div class="o">valid <span class="c"># the package is data an assessor's own tool can check</span></div>
+    <figure class="split" aria-label="The same certification data shown as machine-readable JSON and as human-readable prose">
+      <div class="pane dark">
+        <div class="pane-bar">package.oscal.json <em>machine-readable</em></div>
+        <pre><span class="dim">{</span>
+  <span class="k">"system-security-plan"</span>: {
+    <span class="k">"control-implementation"</span>: {
+      <span class="k">"by-components"</span>: [
+        { <span class="k">"component"</span>: <span class="v">"AC-2"</span>,
+          <span class="k">"props"</span>: [
+            { <span class="k">"name"</span>: <span class="v">"implementation-status"</span>,
+              <span class="k">"value"</span>: <span class="v">"implemented"</span> } ] } ] } },
+  <span class="k">"manifest"</span>: {
+    <span class="k">"artifacts"</span>: [ { <span class="k">"name"</span>: <span class="v">"ssp"</span>, <span class="k">"sha256"</span>: <span class="hash">"9f4c…e2a1"</span> } ] }
+<span class="dim">}</span></pre>
+      </div>
+      <div class="join">
+        <span class="badge"><svg width="24" height="24" viewBox="0 0 30 30" fill="none"><path d="M12 11l-3 4 3 4M18 11l3 4-3 4M6 15h18" stroke="var(--trgr-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>same source</span>
+      </div>
+      <div class="pane light">
+        <div class="pane-bar">System Security Plan <em>human-readable</em></div>
+        <div class="pane-prose">
+          <span class="ctl">AC-2 · ACCOUNT MANAGEMENT</span>
+          <p class="stmt">IAM roles are provisioned from an approved catalog and
+          reconciled to live directory state on each run. Accounts outside the
+          catalog are flagged and disabled within the authorization boundary.</p>
+          <div class="pane-meta">
+            <span>Verified against live state · 2026-07-18 14:22 UTC</span>
+            <span class="digest">9f4c…e2a1</span>
+          </div>
+        </div>
       </div>
     </figure>
+    <p class="split-note">Illustrative. OSCAL SSP shown; the 20x record is the
+    Security Decision Record, built on Key Security Indicators.</p>
   </div>
 
   <section>
@@ -301,6 +364,18 @@
         certification, not retrofitted to it.</p>
       </div>
     </div>
+    <div class="evtable" role="img" aria-label="Illustrative evidence table: controls verified against live state">
+      <table>
+        <thead><tr><th>Control</th><th>Source evidence</th><th>Status</th><th>Last verified</th></tr></thead>
+        <tbody>
+          <tr><td class="ctl">AC-2</td><td>IAM roles</td><td class="st">Verified</td><td class="t">2h ago</td></tr>
+          <tr><td class="ctl">CM-6</td><td>Config baseline</td><td class="st">Drift detected</td><td class="t">41m ago</td></tr>
+          <tr><td class="ctl">SC-13</td><td>KMS key policy</td><td class="st">Verified</td><td class="t">2h ago</td></tr>
+          <tr><td class="ctl">IA-2(1)</td><td>MFA enforcement</td><td class="st">Verified</td><td class="t">2h ago</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="ev-tag">Illustrative · what regenerating evidence looks like</p>
   </section>
 
   <section>
