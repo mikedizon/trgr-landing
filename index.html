@@ -93,6 +93,37 @@
   .closing .cta{background:var(--trgr-white);color:var(--trgr-navy);margin-top:1.75rem}
   .closing .cta:hover{background:#eef0ff}
   .closing .disarm{color:rgba(255,255,255,0.55)}
+  /* Terminal figure — adapted from the design project's P3 artboard */
+  .term{margin:3.5rem auto 0;max-width:52rem;border-radius:10px;background:#0a1f33;
+       border:1px solid var(--trgr-border);overflow:hidden;box-shadow:var(--shadow-ambient-1)}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 18px;
+       border-bottom:1px solid rgba(255,255,255,.09)}
+  .term-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22)}
+  .term-bar span{margin-left:10px;font:400 11px var(--font-mono);letter-spacing:.1em;
+       text-transform:uppercase;color:rgba(255,255,255,.45)}
+  .term-body{padding:1.4rem 1.5rem;font:400 13px/1.75 var(--font-mono);
+       color:rgba(255,255,255,.9);overflow-x:auto}
+  .term-body .p{color:#7d8cff}
+  .term-body .c{color:rgba(255,255,255,.4)}
+  .term-body .o{color:rgba(255,255,255,.6)}
+  /* Pipeline figure — adapted from the design project's P4 artboard */
+  .pipe{display:flex;align-items:stretch;gap:.9rem;margin-top:2.25rem;flex-wrap:wrap}
+  .pipe .inside{display:flex;gap:.9rem;flex:1 1 34rem;flex-wrap:wrap;
+       border:1.5px dashed #c4d0de;border-radius:14px;padding:1.6rem 1rem 1rem;
+       position:relative}
+  .pipe .inside::before{content:"Your AWS accounts · yours to keep";
+       position:absolute;top:-9px;left:1.4rem;background:var(--trgr-surface-subtle);
+       padding:0 10px;font:400 11px var(--font-mono);letter-spacing:.12em;
+       text-transform:uppercase;color:var(--trgr-body)}
+  .node{flex:1 1 9rem;border:1px solid var(--trgr-border);border-radius:8px;
+       background:var(--trgr-white);padding:1rem;display:flex;
+       flex-direction:column;gap:.7rem;min-width:8.5rem}
+  .node.signed{border:1.5px solid var(--trgr-purple);background:rgba(83,58,253,.05)}
+  .node strong{font-size:14px;font-weight:500;line-height:1.25;color:var(--trgr-navy)}
+  .node svg{flex:none}
+  .pipe .out{display:flex;align-items:center;gap:.9rem;flex:0 1 12rem}
+  .pipe .arrow{align-self:center;color:var(--trgr-body);font-size:18px;flex:none}
+  .pipe-caption{margin-top:1rem;font-size:14px;color:var(--trgr-body)}
   footer{background:var(--trgr-brand-dark);color:rgba(255,255,255,0.7);font-size:13px}
   footer .inner{max-width:var(--max);margin:0 auto;padding:0 1.5rem 2.5rem;
        border-top:1px solid rgba(255,255,255,0.12);padding-top:1.5rem}
@@ -115,6 +146,17 @@
     contract without hiring a compliance department.</p>
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
     <p class="disarm">You talk directly with the engineer who does the work. No salespeople.</p>
+
+    <figure class="term" aria-label="Illustrative terminal: the boundary applies as code and the package validates as data">
+      <div class="term-bar"><i></i><i></i><i></i><span>boundary · package · illustrative</span></div>
+      <div class="term-body">
+        <div><span class="p">$</span> terraform apply -target=module.boundary</div>
+        <div class="o">Apply complete. <span class="c"># the boundary is code in your accounts</span></div>
+        <div>&nbsp;</div>
+        <div><span class="p">$</span> oscal-cli validate ssp.json</div>
+        <div class="o">valid <span class="c"># the package is data an assessor's own tool can check</span></div>
+      </div>
+    </figure>
   </div>
 
   <section>
@@ -176,6 +218,35 @@
         and ends with the engagement. No platform sits between you and your
         certification.</span></div></div>
     </div>
+
+    <div class="pipe" role="img" aria-label="Pipeline: your running system to boundary as code to a certification package, all inside your AWS accounts, then submission to FedRAMP">
+      <div class="inside">
+        <div class="node">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M8 21a5.5 5.5 0 01-.6-11 7 7 0 0113.4-1.4A4.8 4.8 0 0121.5 21H8z" stroke="var(--trgr-navy)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <strong>Your running system</strong>
+        </div>
+        <span class="arrow">→</span>
+        <div class="node">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><rect x="6" y="4" width="16" height="20" rx="2" stroke="var(--trgr-navy)" stroke-width="1.5"/><path d="M9.5 10h7M9.5 14h7M9.5 18h4" stroke="var(--trgr-navy)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <strong>Boundary and controls as code</strong>
+        </div>
+        <span class="arrow">→</span>
+        <div class="node signed">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="13" r="8.5" stroke="var(--trgr-purple)" stroke-width="1.5"/><path d="M10 13l2.8 2.8L18 10.5" stroke="var(--trgr-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 21.5l4 2.2 4-2.2" stroke="var(--trgr-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <strong>Certification package, signed by you</strong>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+      <div class="out">
+        <div class="node">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 15v8" stroke="var(--trgr-navy)" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="13" r="2" fill="var(--trgr-navy)"/><path d="M9.4 13a4.6 4.6 0 019.2 0M6.2 13a7.8 7.8 0 0115.6 0" stroke="var(--trgr-navy)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <strong>Submitted under 20x</strong>
+        </div>
+      </div>
+    </div>
+    <p class="pipe-caption">The dashed line is the point: everything up to
+    submission lives in your accounts, and it stays there when the engagement
+    ends.</p>
   </div>
 </section>
 
