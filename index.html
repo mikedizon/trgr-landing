@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TRGR — FedRAMP certification packages and the CR26 trust center</title>
-<meta name="description" content="TRGR generates the CR26 certification package from your running system and ships the trust center that serves it, in your account, under your control.">
+<title>TRGR — FedRAMP and NIST 800-171 authorization services</title>
+<meta name="description" content="TRGR draws the boundary, implements the controls, generates the machine-readable package, and keeps it current as the system changes.">
 <style>
   :root{
     --bg:#0b0e14; --panel:#11151f; --text:#e6e9ef; --muted:#9aa3b2;
@@ -28,27 +28,31 @@
   .hero{padding:4.5rem 0 3.5rem;border-bottom:1px solid var(--rule)}
   .eyebrow{color:var(--muted);font-size:.85rem;letter-spacing:.08em;
        text-transform:uppercase;margin-bottom:1.1rem}
-  h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.15;font-weight:750;
-       letter-spacing:-.015em;max-width:46rem}
+  h1{font-size:clamp(1.8rem,4.2vw,2.8rem);line-height:1.15;font-weight:750;
+       letter-spacing:-.015em;max-width:50rem}
   h1 em{color:var(--accent);font-style:normal}
-  .sub{color:var(--muted);max-width:44rem;margin-top:1.25rem;font-size:1.06rem}
-  .underline-claim{margin-top:1.5rem;font-size:.95rem;color:var(--text);
-       border-left:3px solid var(--accent);padding-left:.9rem;max-width:40rem}
+  .sub{color:var(--muted);max-width:46rem;margin-top:1.25rem;font-size:1.06rem}
   .cta{display:inline-block;margin-top:2rem;background:var(--accent);
        color:var(--bg);font-weight:650;padding:.7rem 1.3rem;border-radius:.4rem;
        text-decoration:none}
   .cta:hover{filter:brightness(1.08)}
   section{padding:3rem 0;border-bottom:1px solid var(--rule)}
   h2{font-size:1.35rem;font-weight:700;margin-bottom:.6rem;letter-spacing:-.01em}
-  .lede{color:var(--muted);max-width:44rem}
+  .lede{color:var(--muted);max-width:46rem}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
        gap:1rem;margin-top:1.75rem}
   .card{background:var(--panel);border:1px solid var(--rule);border-radius:.6rem;
        padding:1.25rem 1.35rem}
+  .card .tag{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;
+       color:var(--accent);margin-bottom:.5rem}
   .card h3{font-size:1.02rem;font-weight:650;margin-bottom:.45rem}
   .card p{color:var(--muted);font-size:.95rem}
-  .contact p{max-width:44rem;color:var(--muted)}
-  .contact a{color:var(--accent)}
+  .paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));
+       gap:1rem;margin-top:1.75rem}
+  .closing{padding:3.5rem 0}
+  .closing h2{font-size:1.6rem}
+  .closing p{color:var(--muted);max-width:44rem;margin-top:.5rem}
+  .closing a.mail{color:var(--accent)}
   footer{max-width:var(--max);margin:0 auto;padding:2rem 1.5rem 3rem;
        color:var(--muted);font-size:.85rem}
 </style>
@@ -60,16 +64,69 @@
 </header>
 <main>
   <div class="hero">
-    <p class="eyebrow">CR26 · required under the 2026 Consolidated Rules</p>
-    <h1>Serve your FedRAMP certification data from <em>your own boundary</em>.</h1>
-    <p class="sub">We generate the CR26 package from your running system and ship
-    the trust center that serves it, in your account, under your control.
-    Agencies mint their own credential with their federal identity and verify
-    every file against the published key.</p>
-    <p class="underline-claim">An approval queue or an email-for-access form does
-    not meet the rule. Conformance is the difference.</p>
-    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20briefing">Request a briefing</a>
+    <p class="eyebrow">Federal contractors · FedRAMP · NIST 800-171 · GovCloud</p>
+    <h1>The authorizations a federal contractor needs, from controls to
+    <em>continuous monitoring</em>.</h1>
+    <p class="sub">One engine covers every framework we support. We draw the
+    boundary, implement the controls, generate the machine-readable package,
+    and keep it current as the system changes. Your ISSO signs every package,
+    and the trust center that serves it runs in your account, not ours.</p>
+    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
   </div>
+
+  <section>
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="tag">FedRAMP Moderate</div>
+        <h3>FedRAMP authorization support</h3>
+        <p>The GovCloud boundary, the Moderate controls, and the OSCAL package
+        behind a FedRAMP authorization.</p>
+      </div>
+      <div class="card">
+        <div class="tag">CMMC Level 2</div>
+        <h3>CUI enclave and NIST 800-171 implementation</h3>
+        <p>A scoped CUI enclave and the 110 NIST 800-171 Rev 2 practices, from
+        scoping to evidence.</p>
+      </div>
+      <div class="card">
+        <div class="tag">GovCloud</div>
+        <h3>GovCloud implementation</h3>
+        <p>An AWS GovCloud environment built as code, with a boundary drawn to
+        match your real system.</p>
+      </div>
+      <div class="card">
+        <div class="tag">Continuous authorization</div>
+        <h3>Continuous monitoring and evidence pipeline setup</h3>
+        <p>The agent suite that keeps the authorization current after it is
+        issued, reviewed and signed by your ISSO.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One engine, two ways to buy</h2>
+    <p class="lede">The agent suite is one engine. You can buy it built into a
+    TRGR authorization from the start, or bring it to a system that is already
+    authorized. Both keep a human reviewer in the loop.</p>
+    <div class="paths">
+      <div class="card">
+        <h3>Build to ATO</h3>
+        <p>The agent suite bundled into a TRGR FedRAMP or NIST 800-171
+        engagement. We build the architecture, the evidence pipelines, and the
+        OSCAL package. Once the system is live, the agents keep running as
+        continuous authorization.</p>
+      </div>
+      <div class="card">
+        <h3>Continuous authorization</h3>
+        <p>The agents on their own, for a team already running an authorized
+        system or with its own compliance staff. It starts with a lighter
+        onboarding to stand up the read-only role, baseline the boundary, and
+        validate the first package. Your ISSO owns final sign-off. No agent
+        output ships without that signature.</p>
+      </div>
+    </div>
+  </section>
 
   <section>
     <h2>Where the agents run and where your data stays</h2>
@@ -92,19 +149,19 @@
       <div class="card">
         <h3>Deterministic verdicts</h3>
         <p>Every pass or fail comes from a deterministic engine evaluating your
-        collected configuration against the published FedRAMP rules. AI drafts
-        the narrative. Your ISSO reviews and signs before an agency can pull
-        anything.</p>
+        collected configuration against the published rules. AI drafts the
+        narrative. Your ISSO reviews and signs before anything ships.</p>
       </div>
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Talk to us</h2>
+  <div class="closing">
+    <h2>Put continuous authorization on your system.</h2>
     <p>Engagements start with a scoping conversation: your system, your
-    boundary, your timeline. Write to
-    <a href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
-  </section>
+    boundary, your timeline. Pricing is scoped on your consultation. Write to
+    <a class="mail" href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
+    <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
+  </div>
 </main>
 <footer>© TRGR. FedRAMP is a program of the U.S. General Services Administration; TRGR is not affiliated with or endorsed by GSA.</footer>
 </body>
