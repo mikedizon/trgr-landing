@@ -5,56 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TRGR — GovCloud deployment and FedRAMP authorization for startups</title>
 <meta name="description" content="TRGR works with startups that need to run in AWS GovCloud and hold a federal authorization to operate: boundary design, environment as code, controls, package, assessment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* TRGR design-system tokens (from the Claude Design project, verbatim) */
   :root{
-    --bg:#0b0e14; --panel:#11151f; --text:#e6e9ef; --muted:#9aa3b2;
-    --accent:#5eead4; --rule:#1e2431; --max:64rem;
-  }
-  @media (prefers-color-scheme: light){
-    :root{ --bg:#fbfbfa; --panel:#f1f2f0; --text:#171a20; --muted:#555d69;
-           --accent:#0d7a6a; --rule:#e3e5e2; }
+    --trgr-purple:#533afd; --trgr-purple-hover:#4434d4; --trgr-purple-deep:#2e2b8c;
+    --trgr-purple-light:#b9b9f9; --trgr-brand-dark:#1c1e54;
+    --trgr-navy:#061b31; --trgr-label:#273951; --trgr-body:#64748d; --trgr-white:#ffffff;
+    --trgr-border:#e5edf5; --trgr-surface-subtle:#f6f9fc;
+    --font-sans:'Hanken Grotesk','SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-mono:'Source Code Pro','SFMono-Regular',ui-monospace,monospace;
+    --shadow-ambient-1:rgba(23,23,23,0.06) 0px 3px 6px;
+    --shadow-3:rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
+    --max:68rem;
   }
   *{box-sizing:border-box;margin:0}
-  body{background:var(--bg);color:var(--text);
-       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-       -webkit-font-smoothing:antialiased}
-  main{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+  body{background:var(--trgr-white);color:var(--trgr-body);
+       font:300 16px/1.4 var(--font-sans);-webkit-font-smoothing:antialiased}
   header.site{max-width:var(--max);margin:0 auto;padding:1.5rem;
-       display:flex;justify-content:space-between;align-items:baseline}
-  .brand{font-weight:700;letter-spacing:.06em}
-  .brand span{color:var(--accent)}
-  header.site a{color:var(--muted);text-decoration:none;font-size:.95rem}
-  header.site a:hover{color:var(--text)}
-  .hero{padding:4.5rem 0 3.5rem;border-bottom:1px solid var(--rule)}
-  .eyebrow{color:var(--muted);font-size:.85rem;letter-spacing:.08em;
-       text-transform:uppercase;margin-bottom:1.1rem}
-  h1{font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.18;font-weight:750;
-       letter-spacing:-.015em;max-width:46rem}
-  h1 em{color:var(--accent);font-style:normal}
-  .sub{color:var(--muted);max-width:44rem;margin-top:1.25rem;font-size:1.06rem}
-  .cta{display:inline-block;margin-top:2rem;background:var(--accent);
-       color:var(--bg);font-weight:650;padding:.7rem 1.3rem;border-radius:.4rem;
-       text-decoration:none}
-  .cta:hover{filter:brightness(1.08)}
-  section{padding:3rem 0;border-bottom:1px solid var(--rule)}
-  h2{font-size:1.35rem;font-weight:700;margin-bottom:.6rem;letter-spacing:-.01em}
-  .lede{color:var(--muted);max-width:44rem}
+       display:flex;justify-content:space-between;align-items:center}
+  .brand{font-weight:600;letter-spacing:-0.02em;color:var(--trgr-navy);font-size:18px}
+  .brand span{color:var(--trgr-purple)}
+  header.site a{color:var(--trgr-label);text-decoration:none;font-weight:400;font-size:14px}
+  header.site a:hover{color:var(--trgr-purple)}
+  main{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+  .hero{padding:5rem 0 4rem}
+  .eyebrow{color:var(--trgr-purple);font-size:13px;font-weight:500;
+       letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}
+  h1{font-size:clamp(34px,5.2vw,56px);line-height:1.03;letter-spacing:-1.4px;
+       font-weight:300;color:var(--trgr-navy);max-width:48rem}
+  .sub{color:var(--trgr-body);max-width:44rem;margin-top:1.5rem;
+       font-size:18px;line-height:1.4}
+  .cta{display:inline-block;margin-top:2.25rem;background:var(--trgr-purple);
+       color:var(--trgr-white);font-weight:400;font-size:16px;line-height:1;
+       padding:.85rem 1.4rem;border-radius:4px;text-decoration:none}
+  .cta:hover{background:var(--trgr-purple-hover)}
+  section{padding:3.5rem 0}
+  section.band{background:var(--trgr-surface-subtle);
+       border-top:1px solid var(--trgr-border);border-bottom:1px solid var(--trgr-border)}
+  section.band>div, section>div{max-width:var(--max);margin:0 auto}
+  .full{margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem}
+  h2{font-size:32px;line-height:1.1;letter-spacing:-0.64px;font-weight:300;
+       color:var(--trgr-navy);margin-bottom:.6rem}
+  .lede{color:var(--trgr-body);max-width:44rem;font-size:16px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
-       gap:1rem;margin-top:1.75rem}
-  .card{background:var(--panel);border:1px solid var(--rule);border-radius:.6rem;
-       padding:1.25rem 1.35rem}
-  .card h3{font-size:1.02rem;font-weight:650;margin-bottom:.45rem}
-  .card p{color:var(--muted);font-size:.95rem}
-  ol.how{margin:1.5rem 0 0 1.1rem;max-width:44rem}
-  ol.how li{margin-bottom:.9rem}
-  ol.how strong{font-weight:650}
-  ol.how span{color:var(--muted)}
-  .closing{padding:3.5rem 0}
-  .closing h2{font-size:1.55rem}
-  .closing p{color:var(--muted);max-width:44rem;margin-top:.5rem}
-  .closing a.mail{color:var(--accent)}
-  footer{max-width:var(--max);margin:0 auto;padding:2rem 1.5rem 3rem;
-       color:var(--muted);font-size:.85rem}
+       gap:1rem;margin-top:2rem}
+  .card{background:var(--trgr-white);border:1px solid var(--trgr-border);
+       border-radius:5px;padding:1.4rem 1.5rem;box-shadow:var(--shadow-ambient-1)}
+  .card h3{font-size:22px;line-height:1.1;letter-spacing:-0.22px;font-weight:400;
+       color:var(--trgr-label);margin-bottom:.55rem}
+  .card p{color:var(--trgr-body);font-size:16px}
+  ol.how{margin:2rem 0 0;padding:0;list-style:none;max-width:46rem;
+       counter-reset:step}
+  ol.how li{counter-increment:step;display:flex;gap:1.1rem;margin-bottom:1.4rem}
+  ol.how li::before{content:counter(step,decimal-leading-zero);
+       font:500 12px/2 var(--font-mono);color:var(--trgr-purple);flex:0 0 auto;
+       padding-top:2px}
+  ol.how strong{display:block;font-size:18px;font-weight:400;
+       color:var(--trgr-label);margin-bottom:.15rem}
+  ol.how span{color:var(--trgr-body);font-size:16px}
+  .closing{background:var(--trgr-brand-dark);margin-top:3.5rem}
+  .closing .inner{max-width:var(--max);margin:0 auto;padding:4rem 1.5rem}
+  .closing h2{color:var(--trgr-white)}
+  .closing p{color:rgba(255,255,255,0.7);max-width:44rem;margin-top:.75rem;font-size:16px}
+  .closing a.mail{color:var(--trgr-purple-light)}
+  .closing .cta{background:var(--trgr-white);color:var(--trgr-navy)}
+  .closing .cta:hover{background:#eef0ff}
+  footer{background:var(--trgr-brand-dark);color:rgba(255,255,255,0.7);
+       font-size:13px}
+  footer .inner{max-width:var(--max);margin:0 auto;
+       padding:0 1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,0.12);
+       padding-top:1.5rem}
 </style>
 </head>
 <body>
@@ -65,7 +88,7 @@
 <main>
   <div class="hero">
     <p class="eyebrow">For startups selling to the federal government</p>
-    <h1>GovCloud deployment and <em>FedRAMP authorization</em>, for startups.</h1>
+    <h1>GovCloud deployment and FedRAMP authorization, for startups.</h1>
     <p class="sub">TRGR works with startups that need to run in AWS GovCloud and
     hold a federal authorization to operate. We design the boundary, build the
     environment as code, implement the controls, write the package, and stay
@@ -73,8 +96,10 @@
     work.</p>
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
   </div>
+</main>
 
-  <section>
+<section class="band full">
+  <div>
     <h2>Services</h2>
     <div class="cards">
       <div class="card">
@@ -88,28 +113,31 @@
         behind a FedRAMP authorization.</p>
       </div>
       <div class="card">
-        <h3>CUI enclave and NIST 800-171 implementation</h3>
+        <h3>CUI enclave and NIST 800-171</h3>
         <p>A scoped CUI enclave and the 110 NIST 800-171 Rev 2 practices, from
         scoping to evidence.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<main>
   <section>
     <h2>How an engagement runs</h2>
     <ol class="how">
-      <li><strong>Scoping.</strong> <span>Your system, your data flows, your
-      timeline, and which authorization path fits. This is the consultation,
-      and it is where pricing is scoped.</span></li>
-      <li><strong>Boundary and architecture.</strong> <span>The authorization
-      boundary drawn to match what you actually run, and the GovCloud
-      architecture that implements it.</span></li>
-      <li><strong>Build.</strong> <span>The environment stood up as code:
-      accounts, network, identity, logging, encryption, and the controls the
-      framework requires.</span></li>
-      <li><strong>Package and assessment.</strong> <span>The system security
-      documentation written from the system as built, and support through the
-      assessment that follows.</span></li>
+      <li><div><strong>Scoping</strong>
+      <span>Your system, your data flows, your timeline, and which
+      authorization path fits. This is the consultation, and it is where
+      pricing is scoped.</span></div></li>
+      <li><div><strong>Boundary and architecture</strong>
+      <span>The authorization boundary drawn to match what you actually run,
+      and the GovCloud architecture that implements it.</span></div></li>
+      <li><div><strong>Build</strong>
+      <span>The environment stood up as code: accounts, network, identity,
+      logging, encryption, and the controls the framework requires.</span></div></li>
+      <li><div><strong>Package and assessment</strong>
+      <span>The system security documentation written from the system as
+      built, and support through the assessment that follows.</span></div></li>
     </ol>
   </section>
 
@@ -121,14 +149,19 @@
     starts from your running system, not from a template, and why the
     environments we build are code you keep.</p>
   </section>
+</main>
 
-  <div class="closing">
+<div class="closing">
+  <div class="inner">
     <h2>Start with the conversation.</h2>
     <p>Tell us what you run and who you are selling to. Write to
     <a class="mail" href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
   </div>
-</main>
-<footer>© TRGR. FedRAMP is a program of the U.S. General Services Administration; TRGR is not affiliated with or endorsed by GSA.</footer>
+</div>
+<footer>
+  <div class="inner">© TRGR. FedRAMP is a program of the U.S. General Services
+  Administration; TRGR is not affiliated with or endorsed by GSA.</div>
+</footer>
 </body>
 </html>
