@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TRGR — GovCloud deployment and FedRAMP authorization for startups</title>
-<meta name="description" content="TRGR works with startups that must run in AWS GovCloud and must hold a federal authorization to operate. We design the boundary, build the environment as code, and write the package.">
+<title>TRGR — FedRAMP ATO Accelerator</title>
+<meta name="description" content="Deploy in GovCloud and certify under FedRAMP 20x. TRGR builds the boundary as code, implements the controls, and produces the machine-readable certification package from your running system.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,41 +15,41 @@
     --trgr-purple-light:#b9b9f9; --trgr-brand-dark:#1c1e54;
     --trgr-navy:#061b31; --trgr-label:#273951; --trgr-body:#64748d; --trgr-white:#ffffff;
     --trgr-border:#e5edf5; --trgr-surface-subtle:#f6f9fc;
+    --trgr-success:#15be53;
     --font-sans:'Hanken Grotesk','SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
     --font-mono:'Source Code Pro','SFMono-Regular',ui-monospace,monospace;
     --shadow-ambient-1:rgba(23,23,23,0.06) 0px 3px 6px;
-    --shadow-3:rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
     --max:68rem;
   }
   *{box-sizing:border-box;margin:0}
   body{background:var(--trgr-white);color:var(--trgr-body);
-       font:300 16px/1.4 var(--font-sans);-webkit-font-smoothing:antialiased}
+       font:300 16px/1.45 var(--font-sans);-webkit-font-smoothing:antialiased}
   header.site{max-width:var(--max);margin:0 auto;padding:1.5rem;
        display:flex;justify-content:space-between;align-items:center}
   .brand{font-weight:600;letter-spacing:-0.02em;color:var(--trgr-navy);font-size:18px}
   .brand span{color:var(--trgr-purple)}
-  header.site a{color:var(--trgr-label);text-decoration:none;font-weight:400;font-size:14px}
-  header.site a:hover{color:var(--trgr-purple)}
-  main{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
-  .hero{padding:5rem 0 4rem}
+  header.site a.contact{color:var(--trgr-label);text-decoration:none;font-weight:400;font-size:14px}
+  header.site a.contact:hover{color:var(--trgr-purple)}
+  main, .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+  .hero{padding:5rem 0 4rem;text-align:left}
   .eyebrow{color:var(--trgr-purple);font-size:13px;font-weight:500;
        letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}
   h1{font-size:clamp(34px,5.2vw,56px);line-height:1.03;letter-spacing:-1.4px;
-       font-weight:300;color:var(--trgr-navy);max-width:48rem}
-  .sub{color:var(--trgr-body);max-width:44rem;margin-top:1.5rem;
-       font-size:18px;line-height:1.4}
-  .cta{display:inline-block;margin-top:2.25rem;background:var(--trgr-purple);
+       font-weight:300;color:var(--trgr-navy);max-width:50rem}
+  .sub{color:var(--trgr-body);max-width:46rem;margin-top:1.5rem;
+       font-size:18px;line-height:1.45}
+  .cta{display:inline-block;background:var(--trgr-purple);
        color:var(--trgr-white);font-weight:400;font-size:16px;line-height:1;
        padding:.85rem 1.4rem;border-radius:4px;text-decoration:none}
   .cta:hover{background:var(--trgr-purple-hover)}
+  .hero .cta{margin-top:2.25rem}
+  .disarm{margin-top:.9rem;font-size:14px;color:var(--trgr-body)}
   section{padding:3.5rem 0}
   section.band{background:var(--trgr-surface-subtle);
        border-top:1px solid var(--trgr-border);border-bottom:1px solid var(--trgr-border)}
-  section.band>div, section>div{max-width:var(--max);margin:0 auto}
-  .full{margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem}
   h2{font-size:32px;line-height:1.1;letter-spacing:-0.64px;font-weight:300;
        color:var(--trgr-navy);margin-bottom:.6rem}
-  .lede{color:var(--trgr-body);max-width:44rem;font-size:16px}
+  .lede{color:var(--trgr-body);max-width:46rem;font-size:16px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
        gap:1rem;margin-top:2rem}
   .card{background:var(--trgr-white);border:1px solid var(--trgr-border);
@@ -57,108 +57,228 @@
   .card h3{font-size:22px;line-height:1.1;letter-spacing:-0.22px;font-weight:400;
        color:var(--trgr-label);margin-bottom:.55rem}
   .card p{color:var(--trgr-body);font-size:16px}
-  ol.how{margin:2rem 0 0;padding:0;list-style:none;max-width:46rem;
-       counter-reset:step}
-  ol.how li{counter-increment:step;display:flex;gap:1.1rem;margin-bottom:1.4rem}
-  ol.how li::before{content:counter(step,decimal-leading-zero);
-       font:500 12px/2 var(--font-mono);color:var(--trgr-purple);flex:0 0 auto;
-       padding-top:2px}
-  ol.how strong{display:block;font-size:18px;font-weight:400;
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));
+       gap:.9rem;margin-top:2rem}
+  .check{display:flex;gap:.8rem;background:var(--trgr-white);
+       border:1px solid var(--trgr-border);border-radius:5px;padding:1.05rem 1.2rem}
+  .check::before{content:"✓";color:var(--trgr-success);font-weight:600;
+       font-size:15px;line-height:1.5;flex:0 0 auto}
+  .check strong{display:block;font-size:16px;font-weight:500;
+       color:var(--trgr-label);margin-bottom:.2rem}
+  .check span{font-size:14px;color:var(--trgr-body)}
+  ol.how{margin:2rem 0 0;padding:0;list-style:none;max-width:48rem;counter-reset:step}
+  ol.how li{counter-increment:step;display:flex;gap:1.1rem;margin-bottom:1rem;
+       background:var(--trgr-white);border:1px solid var(--trgr-border);
+       border-radius:5px;padding:1.1rem 1.3rem}
+  ol.how li::before{content:counter(step);font:500 13px/1 var(--font-mono);
+       color:var(--trgr-white);background:var(--trgr-purple);border-radius:4px;
+       width:1.7rem;height:1.7rem;display:flex;align-items:center;
+       justify-content:center;flex:0 0 auto;margin-top:.15rem}
+  ol.how strong{display:block;font-size:17px;font-weight:500;
        color:var(--trgr-label);margin-bottom:.15rem}
-  ol.how span{color:var(--trgr-body);font-size:16px}
-  .closing{background:var(--trgr-brand-dark);margin-top:3.5rem}
-  .closing .inner{max-width:var(--max);margin:0 auto;padding:4rem 1.5rem}
+  ol.how span{color:var(--trgr-body);font-size:15px}
+  .kicker{margin-top:1.5rem;font-size:15px;color:var(--trgr-label)}
+  details{border:1px solid var(--trgr-border);border-radius:5px;
+       background:var(--trgr-white);margin-top:.8rem;max-width:48rem}
+  summary{cursor:pointer;padding:1rem 1.2rem;font-size:16px;font-weight:400;
+       color:var(--trgr-label);list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"+";color:var(--trgr-purple);font-weight:400}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 1.2rem 1.1rem;font-size:15px;color:var(--trgr-body);max-width:44rem}
+  .closing{background:var(--trgr-brand-dark)}
+  .closing .inner{max-width:var(--max);margin:0 auto;padding:4.5rem 1.5rem}
   .closing h2{color:var(--trgr-white)}
   .closing p{color:rgba(255,255,255,0.7);max-width:44rem;margin-top:.75rem;font-size:16px}
   .closing a.mail{color:var(--trgr-purple-light)}
-  .closing .cta{background:var(--trgr-white);color:var(--trgr-navy)}
+  .closing .cta{background:var(--trgr-white);color:var(--trgr-navy);margin-top:1.75rem}
   .closing .cta:hover{background:#eef0ff}
-  footer{background:var(--trgr-brand-dark);color:rgba(255,255,255,0.7);
-       font-size:13px}
-  footer .inner{max-width:var(--max);margin:0 auto;
-       padding:0 1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,0.12);
-       padding-top:1.5rem}
+  .closing .disarm{color:rgba(255,255,255,0.55)}
+  footer{background:var(--trgr-brand-dark);color:rgba(255,255,255,0.7);font-size:13px}
+  footer .inner{max-width:var(--max);margin:0 auto;padding:0 1.5rem 2.5rem;
+       border-top:1px solid rgba(255,255,255,0.12);padding-top:1.5rem}
 </style>
 </head>
 <body>
 <header class="site">
   <div class="brand">TR<span>GR</span></div>
-  <a href="mailto:hello@trgr.com">Contact</a>
+  <a class="contact" href="mailto:hello@trgr.com">Contact</a>
 </header>
+
 <main>
   <div class="hero">
-    <p class="eyebrow">For startups that sell to the federal government</p>
-    <h1>GovCloud deployment and FedRAMP authorization, for startups.</h1>
-    <p class="sub">TRGR works with startups that must run in AWS GovCloud and
-    must hold a federal authorization to operate. We design the boundary. We
-    build the environment as code. We implement the controls. We write the
-    package. We support you through the assessment. The person you talk to is
-    the person who does the work.</p>
+    <p class="eyebrow">FedRAMP ATO Accelerator</p>
+    <h1>Deploy in GovCloud. Certify under FedRAMP 20x.</h1>
+    <p class="sub">A proven path through the Consolidated Rules for 2026: the
+    GovCloud boundary built as code, the controls implemented where an assessor
+    can read them, and the machine-readable certification package produced from
+    your running system. Built for startups that want their first federal
+    contract without hiring a compliance department.</p>
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
+    <p class="disarm">You talk directly with the engineer who does the work. No salespeople.</p>
   </div>
-</main>
 
-<section class="band full">
-  <div>
-    <h2>Services</h2>
+  <section>
+    <h2>What changed in 2026</h2>
+    <p class="lede">The Consolidated Rules for 2026 rewrote how a cloud service
+    gets certified. Three changes matter to a startup.</p>
+    <!-- REG-FACT: Program Certification "provided directly by FedRAMP and does
+         not require a federal agency to sponsor"; 20x classes A-C are
+         Program-only. source: fedramp.gov/2026/providers/start/path/
+         checked: 2026-08-08  review-by: 2026-10-08 -->
+    <!-- REG-FACT: CR26 requirements mandatory 2027-01-01; FedRAMP stops
+         accepting Rev5 applications 2027-06-11. same source and dates. -->
     <div class="cards">
       <div class="card">
-        <h3>GovCloud implementation</h3>
-        <p>We build your AWS GovCloud environment as code. We draw the
-        boundary to match your real system.</p>
+        <h3>No sponsor</h3>
+        <p>A 20x Program Certification does not require a federal agency to
+        sponsor you. FedRAMP itself reviews and certifies. The old blocker,
+        find an agency first, is gone.</p>
       </div>
       <div class="card">
-        <h3>FedRAMP authorization support</h3>
-        <p>We build the GovCloud boundary. We implement the Moderate
-        controls. We write the OSCAL package for your FedRAMP
-        authorization.</p>
+        <h3>Data, not documents</h3>
+        <p>Under 20x, the certification package is machine-readable data
+        generated from your live system. A document stack written by hand is
+        the old world.</p>
       </div>
       <div class="card">
-        <h3>CUI enclave and NIST 800-171</h3>
-        <p>We build a scoped CUI enclave. We implement the 110 NIST 800-171
-        Rev 2 practices. We take you from scope to evidence.</p>
+        <h3>Real deadlines</h3>
+        <p>Every CR26 requirement becomes mandatory on January 1, 2027.
+        FedRAMP stops accepting Rev5 applications on June 11, 2027. New
+        entrants start on 20x.</p>
       </div>
+    </div>
+  </section>
+</main>
+
+<section class="band">
+  <div class="wrap">
+    <h2>What you get</h2>
+    <p class="lede">Every engagement produces the same artifacts, in your
+    accounts, under your control.</p>
+    <div class="checks">
+      <div class="check"><div><strong>A multi-account GovCloud foundation</strong>
+        <span>Accounts, network, identity, logging, and encryption, stood up as
+        Terraform from day one.</span></div></div>
+      <div class="check"><div><strong>A boundary that matches your system</strong>
+        <span>The authorization boundary is drawn from what you actually run,
+        not from a diagram of what you might.</span></div></div>
+      <div class="check"><div><strong>Controls implemented in code</strong>
+        <span>Each control the framework requires lands in the Terraform, where
+        an assessor can read it and a pipeline can prove it.</span></div></div>
+      <div class="check"><div><strong>The machine-readable package</strong>
+        <span>The 20x certification package, generated from the system as
+        built and kept consistent with it.</span></div></div>
+      <div class="check"><div><strong>Evidence that regenerates</strong>
+        <span>Evidence comes from the live environment. When the system
+        changes, the evidence follows it.</span></div></div>
+      <div class="check"><div><strong>Everything is yours</strong>
+        <span>The code, the accounts, the package. Access is granted by you
+        and ends with the engagement. No platform sits between you and your
+        certification.</span></div></div>
     </div>
   </div>
 </section>
 
 <main>
   <section>
-    <h2>How an engagement runs</h2>
+    <h2>Built for startups going federal</h2>
+    <p class="lede">We work best with teams that:</p>
+    <div class="checks">
+      <div class="check"><div><strong>Run on AWS</strong></div></div>
+      <div class="check"><div><strong>Are pursuing their first ATO</strong></div></div>
+      <div class="check"><div><strong>Prefer code to spreadsheets</strong></div></div>
+      <div class="check"><div><strong>Sell to agencies or to primes</strong></div></div>
+    </div>
+    <p class="kicker">If that is you, the path is shorter than you think.</p>
+  </section>
+
+  <section>
+    <h2>Start from a scoped path. Certify from a running system.</h2>
     <ol class="how">
-      <li><div><strong>Scoping</strong>
-      <span>We examine your system, your data flows, and your timeline. We
-      select the authorization path that fits. This is the consultation. Here
-      we scope the price.</span></div></li>
-      <li><div><strong>Boundary and architecture</strong>
-      <span>We draw the authorization boundary to match what you run. We
-      design the GovCloud architecture that implements it.</span></div></li>
-      <li><div><strong>Build</strong>
-      <span>We build the environment as code. This includes the accounts,
-      the network, identity, logging, and encryption. We implement the
-      controls that the framework requires.</span></div></li>
-      <li><div><strong>Package and assessment</strong>
-      <span>We write the system security documentation from the system as
-      built. We support you through the assessment that follows.</span></div></li>
+      <li><div><strong>We scope the path</strong>
+      <span>One conversation covers your system, your data flows, and your
+      timeline. It ends with the certification class and track that fit, and a
+      scoped price.</span></div></li>
+      <li><div><strong>We build the boundary</strong>
+      <span>The GovCloud environment goes up as Terraform in your accounts,
+      with the controls implemented in the code.</span></div></li>
+      <li><div><strong>You run your system</strong>
+      <span>Your product deploys into the boundary. The environment is yours
+      to operate from the first commit.</span></div></li>
+      <li><div><strong>We produce the package</strong>
+      <span>The certification package is generated from the system as built
+      and submitted under the 20x process. Support continues through
+      certification.</span></div></li>
     </ol>
+    <p class="kicker">You get a certified boundary without pausing product work
+    to build one.</p>
+  </section>
+
+  <section>
+    <h2>Because the alternative is a document stack</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Avoid the package assessors reject</h3>
+        <p>A hand-written package drifts from the system it describes the day
+        it is finished. A generated package cannot drift. It comes from the
+        same state the assessor inspects.</p>
+      </div>
+      <div class="card">
+        <h3>Avoid rebuilding for compliance later</h3>
+        <p>An architecture that meets the controls from day one never needs
+        the expensive second build. The boundary is designed for the
+        certification, not retrofitted to it.</p>
+      </div>
+    </div>
   </section>
 
   <section>
     <h2>Why TRGR</h2>
     <p class="lede">Before services, TRGR built a full FedRAMP compliance
     engine: the collection, the control evaluation, and the machine-readable
-    packages. Because of that work, the documentation we write starts from
-    your live system, not from a template. The environments we build are code
-    that you keep.</p>
+    packages. That work is why the packages we produce start from your live
+    system, not from a template. The infrastructure itself is built on the
+    same open-source Terraform foundations we contribute to.</p>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details>
+      <summary>Do we need an agency sponsor?</summary>
+      <p>Not on the 20x track. A Program Certification is issued by FedRAMP
+      directly, with no sponsoring agency. Agencies then reuse the
+      certification to grant their own authorizations.</p>
+    </details>
+    <details>
+      <summary>What is CR26?</summary>
+      <p>The FedRAMP Consolidated Rules for 2026: the machine-readable rule
+      set that now governs certification. Every requirement in it becomes
+      mandatory on January 1, 2027.</p>
+    </details>
+    <details>
+      <summary>Rev5 or 20x?</summary>
+      <p>New entrants start on 20x. FedRAMP stops accepting Rev5 applications
+      on June 11, 2027, and for the standard 20x classes the Program
+      Certification is the only path.</p>
+    </details>
+    <details>
+      <summary>What does it cost?</summary>
+      <p>Price is scoped on the consultation, by system and by certification
+      class. There is no platform subscription. You pay for the engagement and
+      keep everything it produces.</p>
+    </details>
   </section>
 </main>
 
 <div class="closing">
   <div class="inner">
-    <h2>Start with the conversation.</h2>
-    <p>Tell us what you run and who you sell to. Write to
+    <h2>See your path before you commit.</h2>
+    <p>The consultation maps your system to a certification class and a track,
+    and you keep the map. Write to
     <a class="mail" href="mailto:hello@trgr.com">hello@trgr.com</a>.</p>
     <a class="cta" href="mailto:hello@trgr.com?subject=TRGR%20consultation">Book a consultation</a>
+    <p class="disarm">No pressure and no sales deck. One engineer, your
+    architecture, an hour.</p>
   </div>
 </div>
 <footer>
